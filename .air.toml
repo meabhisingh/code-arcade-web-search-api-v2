@@ -1,0 +1,7 @@
+# .air.toml
+[build]
+cmd = "go run ./cmd"
+bin = "tmp/main"
+include_ext = ["go"]
+exclude_dir = ["vendor", "node_modules", "tmp"]
+delay = 1000

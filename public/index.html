@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Documentation</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      header {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        border-left: 5px solid #0366d6;
+      }
+      h1 {
+        color: #0366d6;
+      }
+      h2 {
+        margin-top: 30px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eaecef;
+        color: #24292e;
+      }
+      h3 {
+        color: #0366d6;
+      }
+      .endpoint {
+        background-color: #f6f8fa;
+        border: 1px solid #eaecef;
+        border-radius: 5px;
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        background-color: #f6f8fa;
+      }
+      code {
+        font-family: Consolas, Monaco, "Andale Mono", monospace;
+        background-color: #f6f8fa;
+        padding: 2px 5px;
+        border-radius: 3px;
+        font-size: 14px;
+      }
+      pre {
+        background-color: #f6f8fa;
+        border-radius: 5px;
+        padding: 15px;
+        overflow-x: auto;
+      }
+      .method {
+        display: inline-block;
+        padding: 5px 10px;
+        border-radius: 3px;
+        font-weight: bold;
+        margin-right: 10px;
+      }
+      .method-post {
+        background-color: #49cc90;
+        color: white;
+      }
+      .method-get {
+        background-color: #61affe;
+        color: white;
+      }
+      .required {
+        color: #ff0000;
+        font-weight: bold;
+      }
+      .footer {
+        margin-top: 40px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        text-align: center;
+      }
+      .try-it {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>API Documentation</h1>
+      <p>
+        Welcome to our API Service! Below you'll find information about the
+        available endpoints, how to use them, and how to test if the service is
+        working correctly.
+      </p>
+    </header>
+    <section>
+      <h2>Available Endpoints</h2>
+
+      <div class="endpoint">
+        <h3><span class="method method-post">POST</span> /api/v1/search</h3>
+        <p>Search for information using our powerful search engine.</p>
+
+        <h4>Request Parameters</h4>
+        <table>
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Type</th>
+              <th>Required</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>query</code></td>
+              <td>String</td>
+              <td><span class="required">Yes</span></td>
+              <td>The search term or phrase to look for</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4>Example Request</h4>
+        <pre><code>{"query": "machine learning algorithms" }</code></pre>
+
+        <h4>Example Response</h4>
+        <pre><code>{
+    "success": boolean,
+    "meta": {
+        "timeTaken": string,
+        "length": number,
+        "size": string
+    },
+    "results": [{
+        "source": {
+            "url": string,
+            "title": string,
+            "website": string,
+            "icon":"string"
+        },
+        "content": string
+    }]
+}</code></pre>
+      </div>
+
+      <div class="endpoint">
+        <h3><span class="method method-get">GET</span> /api/v1/test</h3>
+        <p>Simple endpoint to verify the API service is running properly.</p>
+
+        <h4>Example Request</h4>
+        <p>Simply send a GET request to <code>/api/v1/test</code></p>
+
+        <h4>Example Response</h4>
+        <pre><code>Test route works!</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>Using the API</h2>
+
+      <h3>With cURL</h3>
+      <pre><code># Search API Example
+curl -X POST http://localhost:8080/api/v1/search
+-H "Content-Type: application/json"
+-d '{"query": "your search term"}'
+
+Test API Example
+curl -X GET http://localhost:8080/api/v1/test</code></pre>
+
+      <h3>With JavaScript</h3>
+      <pre><code>// Search API Example
+fetch('http://localhost:8080/api/v1/search', { method: 'POST', headers: { 'Content-Type': 'application/json', }, body: JSON.stringify({ query: 'your search term' }) }) .then(response => response.json()) .then(data => console.log(data));
+
+// Test API Example fetch('http://localhost:8080/api/v1/test') .then(response => response.json()) .then(data => console.log(data));</code></pre>
+    </section>
+
+    <section>
+      <h2>Error Handling</h2>
+      <p>The API returns appropriate HTTP status codes:</p>
+      <ul>
+        <li><code>200</code> - Success</li>
+        <li><code>400</code> - Bad Request (missing or invalid parameters)</li>
+        <li><code>404</code> - Not Found</li>
+        <li><code>500</code> - Server Error</li>
+      </ul>
+    </section>
+
+    <div class="try-it">
+      <h2>Try it Out</h2>
+      <p>You can test the API directly from here:</p>
+
+      <h3>Test the Search API</h3>
+      <form id="searchForm">
+        <label for="query">Search query:</label>
+        <input
+          type="text"
+          id="query"
+          required
+          style="padding: 8px; width: 300px; margin: 10px 0"
+        />
+        <button
+          type="submit"
+          style="
+            padding: 8px 15px;
+            background: #0366d6;
+            color: white;
+            border: none;
+            cursor: pointer;
+          "
+        >
+          Search
+        </button>
+      </form>
+
+      <div id="searchResults" style="margin-top: 20px"></div>
+
+      <h3>Test the Test API</h3>
+      <button
+        id="testApi"
+        style="
+          padding: 8px 15px;
+          background: #0366d6;
+          color: white;
+          border: none;
+          cursor: pointer;
+        "
+      >
+        Run Test
+      </button>
+      <div id="testResults" style="margin-top: 20px"></div>
+    </div>
+
+    <div class="footer">
+      <h3>Need Help?</h3>
+      <p>
+        If you have any questions or need assistance with the API, please
+        contact our support team at
+        <a href="mailto:official.6packprogrammer@gmail.com"
+          >official.6packprogrammer@gmail.com</a
+        >.
+      </p>
+    </div>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

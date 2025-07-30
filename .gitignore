@@ -1,0 +1,39 @@
+# Compiled binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+web-search
+server
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Log files
+*.log
+*.log.*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+tmp
+
+# Dependency directories
+/vendor/
+
+# IDE and editor directories
+.idea/
+.vscode/
+*.swp
+*~
+
+# Test coverage
+/coverage/
+*.cover
+
+# OS-specific files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,16 @@
+services:
+  server:
+    image: codearcade/web-search
+    ports:
+      - 4000:4000
+    environment:
+      - PORT=4000
+      - SEARCH_ENGINE_URL=http://search-engine:8080
+      - NODE_ENV=PRODUCTION
+
+  search-engine:
+    image: codearcade/search-engine
+    ports:
+      - 8080:8080
+    environment:
+      - INSTANCE_NAME=search-engine
