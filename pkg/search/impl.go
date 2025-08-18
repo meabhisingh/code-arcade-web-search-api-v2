@@ -19,7 +19,7 @@ func (s *service) FetchSearchResults(query string) ([]SearchResult, error) {
 
 	searxngUrl := config.GetEnv("SEARCH_ENGINE_URL", "http://localhost:8080")
 
-	urlWithQuery := searxngUrl + "?q=" + url.QueryEscape(query) + "&format=json"
+	urlWithQuery := searxngUrl + "?q=" + url.QueryEscape(query) + "&format=json&engines=google,bing"
 
 	body := []byte(`{}`)
 
